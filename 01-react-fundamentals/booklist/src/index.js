@@ -17,46 +17,50 @@ const books = [
   },
 ];
 
-const Book = (props) => {
-  const { title, image, author } = props;
-  return (
-    <article className="book">
-      <img src={image} alt={title} />
-      <h2>{title}</h2>
-      <h4>{author}</h4>
-    </article>
-  );
-};
-
 const BookList = () => {
   return (
     <section className="bookList">
-      {/* 
-        to create multiple Book components
-        we iterate throw the books array and return for each
-        a Book component with the book infos
-       */}
+      <EventExamples />
       {books.map((book) => {
-        // we destructure the infos from the book
-        const { title, author, img, id } = book;
-        return <Book key={id} title={title} author={author} image={img} />;
+        // we use the spread operator to pass all book's infos as props
+        return <Book {...book} key={book.id} />;
       })}
     </section>
   );
 };
 
-/* 
-destructuring inside the function parameters
-const Book = ({ title, image, author }) => {
+const Book = (props) => {
+  const { title, img, author } = props;
   return (
     <article className="book">
-      <img src={image} alt={title} />
+      <img src={img} alt={title} />
       <h2>{title}</h2>
       <h4>{author}</h4>
     </article>
   );
 };
- */
+
+const EventExamples = () => {
+  // as it's a event handler we can access the 'event' object
+  const handleOnChangeEvent = (e) => {
+    console.log(`Change to ${e.target.value}`);
+  };
+
+  const handleOnClickEvent = (e) => {
+    e.preventDefault();
+    console.log('Change');
+  };
+
+  return (
+    <section>
+      <form>
+        <h1>Typical Form</h1>
+        <input type="text" name="example" onChange={handleOnChangeEvent} />
+        <button onClick={handleOnClickEvent}>click me</button>
+      </form>
+    </section>
+  );
+};
 
 const root = ReactDom.createRoot(document.getElementById('root'));
 
