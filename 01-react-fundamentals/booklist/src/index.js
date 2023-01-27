@@ -4,7 +4,7 @@ import './index.css';
 
 const BookList = () => {
   return (
-    <section className='bookList'>
+    <section className="bookList">
       <Book />
       <Book />
       <Book />
@@ -15,7 +15,7 @@ const BookList = () => {
 
 const Book = () => {
   return (
-    <article className='book'>
+    <article className="book">
       <Image />
       <Title />
       <Author />
@@ -24,12 +24,7 @@ const Book = () => {
 };
 
 const Image = () => {
-  return (
-    <img
-      src="https://m.media-amazon.com/images/I/41AkIg2fDcL._SX339_BO1,204,203,200_.jpg"
-      alt="book-cover"
-    />
-  );
+  return <img src="./images/book-1.jpg" alt="book-cover" />;
 };
 
 const Title = () => {
