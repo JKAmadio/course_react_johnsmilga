@@ -21,7 +21,13 @@ const BookList = () => {
         title={firstBook['title']}
         image={firstBook['img']}
         author={firstBook['author']}
-      />
+      >
+        <p>
+          Deserunt quo qui maiores. Officiis voluptatibus quam provident
+          consequatur eaque.
+        </p>
+        <button>click me</button>
+      </Book>
       <Book
         title={secondBook['title']}
         image={secondBook['img']}
@@ -32,12 +38,15 @@ const BookList = () => {
 };
 
 const Book = (props) => {
-  const { title, image, author } = props;
+  // the "children" props is a default prop from React
+  // it access everything between the component tags
+  const { title, image, author, children } = props;
   return (
     <article className="book">
       <img src={image} alt={title} />
       <h2>{title}</h2>
       <h4>{author}</h4>
+      {children}
     </article>
   );
 };
@@ -45,7 +54,7 @@ const Book = (props) => {
 /* 
 destructuring inside the function parameters
 
-const Book = ({ title, image, author }) => {
+const Book = ({ title, image, author, children }) => {
   return (
     <article className="book">
       <img src={image} alt={title} />
