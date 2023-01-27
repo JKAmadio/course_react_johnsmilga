@@ -2,59 +2,52 @@ import React from 'react';
 import ReactDom from 'react-dom/client';
 import './index.css';
 
-const firstBook = {
-  author: 'Rick Rubin',
-  title: 'The Creative Act: A Way of Being',
-  img: './images/book-1.jpg',
-};
-
-const secondBook = {
-  author: 'Robert Greene',
-  title: 'Nova o 48 Leis do Poder',
-  img: './images/book-2.jpg',
-};
-
-const BookList = () => {
-  return (
-    <section className="bookList">
-      <Book
-        title={firstBook['title']}
-        image={firstBook['img']}
-        author={firstBook['author']}
-      >
-        <p>
-          Deserunt quo qui maiores. Officiis voluptatibus quam provident
-          consequatur eaque.
-        </p>
-        <button>click me</button>
-      </Book>
-      <Book
-        title={secondBook['title']}
-        image={secondBook['img']}
-        author={secondBook['author']}
-      />
-    </section>
-  );
-};
+const books = [
+  {
+    author: 'Rick Rubin',
+    title: 'The Creative Act: A Way of Being',
+    img: './images/book-1.jpg',
+    id: 1,
+  },
+  {
+    author: 'Robert Greene',
+    title: 'Nova o 48 Leis do Poder',
+    img: './images/book-2.jpg',
+    id: 2,
+  },
+];
 
 const Book = (props) => {
-  // the "children" props is a default prop from React
-  // it access everything between the component tags
-  const { title, image, author, children } = props;
+  const { title, image, author } = props;
   return (
     <article className="book">
       <img src={image} alt={title} />
       <h2>{title}</h2>
       <h4>{author}</h4>
-      {children}
     </article>
+  );
+};
+
+const BookList = () => {
+  return (
+    <section className="bookList">
+      {/* 
+        to create multiple Book components
+        we iterate throw the books array and return for each
+        a Book component with the book infos
+       */}
+      {books.map((book) => {
+        // we destructure the infos from the book
+        const { title, author, img, id } = book;
+        return <Book key={id} title={title} author={author} image={img} />;
+      })}
+    </section>
   );
 };
 
 /* 
 destructuring inside the function parameters
-
-const Book = ({ title, image, author, children }) => {
+const Book = ({ title, image, author }) => {
   return (
     <article className="book">
       <img src={image} alt={title} />
