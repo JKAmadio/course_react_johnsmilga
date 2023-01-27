@@ -2,38 +2,59 @@ import React from 'react';
 import ReactDom from 'react-dom/client';
 import './index.css';
 
+const firstBook = {
+  author: 'Rick Rubin',
+  title: 'The Creative Act: A Way of Being',
+  img: './images/book-1.jpg',
+};
+
+const secondBook = {
+  author: 'Robert Greene',
+  title: 'Nova o 48 Leis do Poder',
+  img: './images/book-2.jpg',
+};
+
 const BookList = () => {
   return (
     <section className="bookList">
-      <Book />
-      <Book />
-      <Book />
-      <Book />
+      <Book
+        title={firstBook['title']}
+        image={firstBook['img']}
+        author={firstBook['author']}
+      />
+      <Book
+        title={secondBook['title']}
+        image={secondBook['img']}
+        author={secondBook['author']}
+      />
     </section>
   );
 };
 
-const Book = () => {
+const Book = (props) => {
+  const { title, image, author } = props;
   return (
     <article className="book">
-      <Image />
-      <Title />
-      <Author />
+      <img src={image} alt={title} />
+      <h2>{title}</h2>
+      <h4>{author}</h4>
     </article>
   );
 };
 
-const Image = () => {
-  return <img src="./images/book-1.jpg" alt="book-cover" />;
-};
+/* 
+destructuring inside the function parameters
 
-const Title = () => {
-  return <h2>The Creative Act: A Way of Being</h2>;
+const Book = ({ title, image, author }) => {
+  return (
+    <article className="book">
+      <img src={image} alt={title} />
+      <h2>{title}</h2>
+      <h4>{author}</h4>
+    </article>
+  );
 };
-
-const Author = () => {
-  return <h4>Rick Rubin</h4>;
-};
+ */
 
 const root = ReactDom.createRoot(document.getElementById('root'));
 
