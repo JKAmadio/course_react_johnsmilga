@@ -18,47 +18,40 @@ const books = [
 ];
 
 const BookList = () => {
+  const getBook = (id) => {
+    const book = books.find((item) => item['id'] === id);
+    console.log(book);
+  };
   return (
     <section className="bookList">
-      <EventExamples />
       {books.map((book) => {
         // we use the spread operator to pass all book's infos as props
-        return <Book {...book} key={book.id} />;
+        return <Book {...book} getBook={getBook} key={book.id} />;
       })}
     </section>
   );
 };
 
 const Book = (props) => {
-  const { title, img, author } = props;
+  const { title, img, author, id, getBook } = props;
+
+  /* const getSingleBook = () => {
+    getBook(id);
+  }; */
   return (
     <article className="book">
       <img src={img} alt={title} />
+      {/*
+        we can use a auxiliar function to evolke the getBook at the right moment
+        <button onClick={getSingleBook}>click me</button>
+      */}
+
+      {/* or call it as an anonymous function */}
+      <button onClick={() => getBook(id)}>click me</button>
+
       <h2>{title}</h2>
       <h4>{author}</h4>
     </article>
-  );
-};
-
-const EventExamples = () => {
-  // as it's a event handler we can access the 'event' object
-  const handleOnChangeEvent = (e) => {
-    console.log(`Change to ${e.target.value}`);
-  };
-
-  const handleOnClickEvent = (e) => {
-    e.preventDefault();
-    console.log('Change');
-  };
-
-  return (
-    <section>
-      <form>
-        <h1>Typical Form</h1>
-        <input type="text" name="example" onChange={handleOnChangeEvent} />
-        <button onClick={handleOnClickEvent}>click me</button>
-      </form>
-    </section>
   );
 };
 
