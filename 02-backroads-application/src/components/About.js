@@ -1,14 +1,11 @@
 import React from 'react';
 import aboutImg from '../images/about.jpeg';
+import SectionTitle from './SectionTitle';
 
 function About() {
   return (
     <section className="section" id="about">
-      <div className="section-title">
-        <h2>
-          about <span>us</span>
-        </h2>
-      </div>
+      <SectionTitle firstWord="about" secondWord="us" />
 
       <div className="section-center about-center">
         <div className="about-img">
