@@ -21,12 +21,15 @@ function App() {
     fetchData();
   }, [])
 
+  const removeTour = (id) => {
+    const newTours = tours.filter(item => item.id !== id);
+    setTours(newTours);
+  }
+
   if (isLoading)
     return <Loading />
   return <main>
-    <section>
-      <Tours tours={tours} />
-    </section>
+    <Tours tours={tours} removeTour={(id) => removeTour(id)}/>
   </main>
 }
 
