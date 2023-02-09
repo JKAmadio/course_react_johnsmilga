@@ -9,15 +9,20 @@ function App() {
   const [tours, setTours] = useState([]);
   const [isLoading, setIsLoading] = useState(true)
 
-  useEffect(() => {
-    async function fetchData() {
-      setIsLoading(true);
+  async function fetchData() {
+    setIsLoading(true);
+    try {
       const response = await fetch(url);
       const data = await response.json();
       setTours(data);
       setIsLoading(false);
+    } catch (error) {
+      setIsLoading(false);
+      console.log(error);
     }
+  }
 
+  useEffect(() => {
     fetchData();
   }, [])
 
@@ -28,7 +33,18 @@ function App() {
 
   if (isLoading)
     return <Loading />
+  if (tours.length === 0)
+    return <main>
+      <div className="title">
+        <h2>No tours left</h2>
+          <button className="btn" onClick={() => fetchData()}>Refresh</button>
+      </div>
+    </main>
   return <main>
+    <div className="title">
+      <h2>Our Tours</h2>
+      <div className="underline" />  
+    </div>
     <Tours tours={tours} removeTour={(id) => removeTour(id)}/>
   </main>
 }
