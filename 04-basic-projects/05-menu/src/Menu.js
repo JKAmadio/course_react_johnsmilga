@@ -1,7 +1,11 @@
 import React from 'react';
 
-const Menu = () => {
-  return <h2>menu component</h2>;
+const Menu = ({ items, chooseCategory }) => {
+  return <div> 
+    {items.map((item, index) => {
+      return <button key={index} onClick={() => chooseCategory(item)}>{item}</button>
+    })}
+  </div>;
 };
 
 export default Menu;

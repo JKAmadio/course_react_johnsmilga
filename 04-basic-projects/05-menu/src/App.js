@@ -23,9 +23,7 @@ function App() {
   }
 
   return <main>
-    {listinha.map((item, index) => {
-      return <button key={index} onClick={() => chooseCategory(item)}>{item}</button>
-    })}
+    <Menu items={listinha} chooseCategory={chooseCategory} />
     {showList.map(item => {
       return <div key={item.id}>{item.title}</div>
     })}

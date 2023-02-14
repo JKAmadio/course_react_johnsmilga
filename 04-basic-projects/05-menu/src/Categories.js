@@ -1,7 +1,11 @@
 import React from 'react';
 
-const Categories = () => {
-  return <h2>categories component</h2>;
+const Categories = ({ showList }) => {
+  return <div>
+    {showList.map(item => {
+      return <div key={item.id}>{item.title}</div>
+    })}
+  </div>
 };
 
 export default Categories;
