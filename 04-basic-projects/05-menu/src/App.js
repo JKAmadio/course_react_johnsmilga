@@ -23,10 +23,14 @@ function App() {
   }
 
   return <main>
-    <Menu items={listinha} chooseCategory={chooseCategory} />
-    {showList.map(item => {
-      return <div key={item.id}>{item.title}</div>
-    })}
+    <section className="menu section">
+      <div className="title">
+        <h2>our menu</h2>
+        <div className="underline"/>
+      </div>
+      <Menu items={listinha} chooseCategory={chooseCategory} />
+      <Categories showList={showList}/>
+    </section>
   </main>
 }
 
